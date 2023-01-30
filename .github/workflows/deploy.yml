@@ -17,4 +17,4 @@ jobs:
         uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with:
           deta-access-token: ${{ secrets.DETA_ACCESS_TOKEN }}
-          deta-name: 'cubixolo'
+          deta-name: 'cubixx'
