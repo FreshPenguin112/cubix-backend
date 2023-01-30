@@ -1,4 +1,6 @@
 name: Deploy to Deta
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 on:
   push:
   workflow_dispatch:
