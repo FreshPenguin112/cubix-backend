@@ -15,7 +15,6 @@ jobs:
          export PATH="/home/runner/.deta/bin:$PATH"
          source ~/.bashrc
          export DETA_ACCESS_TOKEN= ${{ secrets.DETA_ACCESS_TOKEN }}
-         deta auth disable
          deta login
          deta new --python cubixx
       - name : deploy
