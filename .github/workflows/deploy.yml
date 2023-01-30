@@ -14,12 +14,12 @@ jobs:
          curl -fsSL https://get.deta.dev/cli.sh | sh
          export PATH="/home/runner/.deta/bin:$PATH"
          deta auth disable
-         export DETA_ACCESS_TOKEN=${{ secrets.DETA_ACCESS_TOKEN }}
+         export DETA_ACCESS_TOKEN= ${{ secrets.DETA_ACCESS_TOKEN }}
          deta new --python --project cubixx
       - name : deploy
         uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with: 
-          deta-access-token: ${{ secrets.DETA_TOKEN }}
+          deta-access-token: ${{ secrets.DETA_ACCESS_TOKEN }}
           deta-name: 'cubixx'
           deta-project: 'cubixx'
       
