@@ -16,12 +16,12 @@ jobs:
          source ~/.bashrc
          export deta_access_token= 'byBF5375_Sb6MVS1Tx1vMEr1Fq8qScsC9RPakYZh1'
          export DETA_ACCESS_TOKEN= 'byBF5375_Sb6MVS1Tx1vMEr1Fq8qScsC9RPakYZh1'
-         deta new --python --project cubix
+         
         shell: bash
       - name : deploy
         uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with: 
-          deta-access-token: ${{ secrets.DETA_ACCESS_TOKEN }}
+          deta-access-token: 'byBF5375_Sb6MVS1Tx1vMEr1Fq8qScsC9RPakYZh1'
           deta-name: 'cubix'
           deta-project: 'cubix'
       
