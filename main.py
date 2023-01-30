@@ -1,10 +1,7 @@
-print('hello world')
-from flask import Flask
+from fastapi import FastAPI
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/', methods=["GET"])
-
-def hello_world():
-
-    return "Hello World"
+@app.get("/")
+def hello():
+    return "Hello from my Deta Micro"
