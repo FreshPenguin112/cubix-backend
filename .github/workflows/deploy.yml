@@ -15,7 +15,9 @@ jobs:
          export PATH="/home/runner/.deta/bin:$PATH"
          deta auth disable
          export DETA_ACCESS_TOKEN= ${{ secrets.DETA_ACCESS_TOKEN }}
-         deta new --python --project cubixx
+         deta login
+         deta new
+         deta deploy
       - name : deploy
         uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with: 
