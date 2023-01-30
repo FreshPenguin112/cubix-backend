@@ -1,27 +1,20 @@
-name: Deploy to Deta
-on:
-  push:
-  workflow_dispatch:
+on: [push,workflow_dispatch]
+
+env:
+  GIT_COMMIT_SHA: ${{ github.sha }}
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name : checkout
-        uses: actions/checkout@v2 
-      - name : new micro
-        run: |
-         curl -fsSL https://get.deta.dev/cli.sh | sh
-         export PATH="/home/runner/.deta/bin:$PATH"
-         source ~/.bashrc
-         export deta_access_token= 'byBF5375_Sb6MVS1Tx1vMEr1Fq8qScsC9RPakYZh1'
-         export DETA_ACCESS_TOKEN= 'byBF5375_Sb6MVS1Tx1vMEr1Fq8qScsC9RPakYZh1'
-         
-        shell: bash
-      - name : deploy
-        uses: BogDAAAMN/deta-deploy-action@v1.0.1
-        with: 
-          deta-access-token: 'byBF5375_Sb6MVS1Tx1vMEr1Fq8qScsC9RPakYZh1'
-          deta-name: 'cubix'
-          deta-project: 'cubix'
-      
+      - uses: actions/checkout@v2
+      - uses: BogDAAAMN/deta-deploy-action@v1.0.1
+        with:
+          deta-access-token: ${{ secrets.DETA_ACCESS_TOKEN }}
+          deta-name: 'cubixolo'
+      - run: |
+          curl -fsSL https://get.deta.dev/cli.sh | sh
+          export PATH="/home/runner/.deta/bin:$PATH"
+          export DETA_ACCESS_TOKEN=${{ secrets.DETA_ACCESS_TOKEN }}
+          ~/.deta/bin/deta new --python cubixolo
+          
