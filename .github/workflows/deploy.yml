@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 
-      - uses: HarshKapadia2/deta-deploy@v1.0.2
-        with:
-          deta-access-token: ${{ secrets.DETA_TOKEN }}
-          deta-name: 'cubix-backend'
-          deta-project: 'cubix-backendlol'
+      - uses: jhihyulin/deta-create-micro-action@v1.0.0
+        with: deta-access-token: ${{ secrets.DETA_TOKEN }} #Deta access token https://docs.deta.sh/docs/cli/auth
+        deta-name: 'cubixx' #Deta Micro name https://docs.deta.sh/docs/cli/commands/#deta-clone
+        deta-project: 'cubix' #Optional: Deta project name https://docs.deta.sh/docs/cli/commands/#deta-clone
+        deta-project-dir: '.' #Optional: directory to be deployed on Deta. Default is the root "."
+        deta-runtime-version: 'python3.10' #python3.7 python3.9
