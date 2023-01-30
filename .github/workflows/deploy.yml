@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 
-      - uses: jhihyulin/deta-create-micro-action@v1.0.0
+      - uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with: 
           deta-access-token: ${{ secrets.DETA_TOKEN }} #Deta access token https://docs.deta.sh/docs/cli/auth
           deta-name: 'cubixx' #Deta Micro name https://docs.deta.sh/docs/cli/commands/#deta-clone
