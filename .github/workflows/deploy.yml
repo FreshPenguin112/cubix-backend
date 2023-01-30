@@ -10,7 +10,7 @@ jobs:
       - name : checkout
         uses: actions/checkout@v2 
       - name : new micro
-      - run: |
+        run: |
          curl -fsSL https://get.deta.dev/cli.sh | sh
          deta new my-micro --python --project cubixx
       - name : deploy
