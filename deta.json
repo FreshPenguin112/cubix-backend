@@ -1,0 +1,19 @@
+{
+
+	"name": "hello_world",	"description": "Deploy to Deta button example",
+
+	"env": [
+
+		{
+
+			"key": "NAME",
+
+			"description": "Your name",
+
+			"required": false 
+
+		}
+
+	]
+
+}
