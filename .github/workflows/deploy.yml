@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 
-      - uses: BogDAAAMN/deta-deploy-action@v1.0.1
+      - uses: HarshKapadia2/deta-deploy@v1.0.2
         with:
           deta-access-token: ${{ secrets.DETA_TOKEN }}
           deta-name: 'cubix-backend'
