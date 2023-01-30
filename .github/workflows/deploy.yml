@@ -13,6 +13,7 @@ jobs:
         run: |
          curl -fsSL https://get.deta.dev/cli.sh | sh
          export PATH="/home/runner/.deta/bin:$PATH"
+         deta login ${{ secrets.DETA_TOKEN }}
          deta new my-micro --python --project cubixx
       - name : deploy
         uses: BogDAAAMN/deta-deploy-action@v1.0.1
