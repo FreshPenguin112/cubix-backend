@@ -14,6 +14,7 @@ jobs:
          curl -fsSL https://get.deta.dev/cli.sh | sh
          export PATH="/home/runner/.deta/bin:$PATH"
          deta auth disable
+         export DETA_ACCESS_TOKEN=${{ secrets.DETA_ACCESS_TOKEN }}
          deta login
          deta new --python --project cubixx
       - name : deploy
