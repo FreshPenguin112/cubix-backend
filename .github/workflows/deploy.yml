@@ -14,8 +14,6 @@ jobs:
          curl -fsSL https://get.deta.dev/cli.sh | sh
          export PATH="/home/runner/.deta/bin:$PATH"
          export DETA_ACCESS_TOKEN= ${{ secrets.DETA_ACCESS_TOKEN }}
-         deta auth disable
-         deta login
       - name : deploy
         uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with: 
