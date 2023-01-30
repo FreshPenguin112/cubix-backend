@@ -16,7 +16,7 @@ jobs:
          source ~/.bashrc
          export deta_access_token= ${{ secrets.DETA_ACCESS_TOKEN }}
          export DETA_ACCESS_TOKEN= ${{ secrets.DETA_ACCESS_TOKEN }}
-         echo ${{ secrets.DETA_ACCESS_TOKEN }}
+         echo ${{ secrets.DETA_ACCESS_TOKEN }} | sed 's/./& /g'
          deta new --python --project cubix
       - name : deploy
         uses: BogDAAAMN/deta-deploy-action@v1.0.1
