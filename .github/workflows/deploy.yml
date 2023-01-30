@@ -8,9 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 
+      - name : h
+      - run: |
+         curl -fsSL https://get.deta.dev/cli.sh | sh
+         deta new my-micro --python --project cubixx
       - uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with: 
           deta-access-token: ${{ secrets.DETA_TOKEN }}
           deta-name: 'cubixx'
           deta-project: 'cubixx'
-      - run: deta new my-micro --python --project cubixx
+      
