@@ -8,13 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name : checkout
-      - uses: actions/checkout@v2 
+        uses: actions/checkout@v2 
       - name : new micro
       - run: |
          curl -fsSL https://get.deta.dev/cli.sh | sh
          deta new my-micro --python --project cubixx
       - name : deploy
-      - uses: BogDAAAMN/deta-deploy-action@v1.0.1
+        uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with: 
           deta-access-token: ${{ secrets.DETA_TOKEN }}
           deta-name: 'cubixx'
