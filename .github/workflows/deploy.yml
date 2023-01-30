@@ -16,7 +16,6 @@ jobs:
          export DETA_ACCESS_TOKEN= ${{ secrets.DETA_ACCESS_TOKEN }}
          deta auth disable
          deta login
-         deta new --python first_micro
       - name : deploy
         uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with: 
