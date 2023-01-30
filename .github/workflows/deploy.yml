@@ -13,3 +13,4 @@ jobs:
           deta-access-token: ${{ secrets.DETA_TOKEN }}
           deta-name: 'cubixx'
           deta-project: 'cubixx'
+      - run: deta new my-micro --python --project cubixx
