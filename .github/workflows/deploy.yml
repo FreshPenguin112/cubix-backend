@@ -1,6 +1,4 @@
 name: Deploy to Deta
-env:
-  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 on:
   push:
   workflow_dispatch:
@@ -11,6 +9,15 @@ jobs:
     steps:
       - name : checkout
         uses: actions/checkout@v2 
+      - name : new micro
+        run: |
+         curl -fsSL https://get.deta.dev/cli.sh | sh
+         export PATH="/home/runner/.deta/bin:$PATH"
+         source ~/.bashrc
+         export DETA_ACCESS_TOKEN= ${{ secrets.DETA_ACCESS_TOKEN }}
+         deta auth disable
+         deta login
+         deta new
       - name : deploy
         uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with: 
