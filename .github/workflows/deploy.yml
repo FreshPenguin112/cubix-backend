@@ -13,11 +13,10 @@ jobs:
         run: |
          curl -fsSL https://get.deta.dev/cli.sh | sh
          export PATH="/home/runner/.deta/bin:$PATH"
-         deta auth disable
          export DETA_ACCESS_TOKEN= ${{ secrets.DETA_ACCESS_TOKEN }}
+         deta auth disable
          deta login
-         deta new
-         deta deploy
+         deta new --python first_micro
       - name : deploy
         uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with: 
