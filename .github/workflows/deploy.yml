@@ -8,13 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: install and new
+      - run: |
+          curl -fsSL https://get.deta.dev/cli.sh | sh
+          export DETA_ACCESS_TOKEN=${{ secrets.DETA_ACCESS_TOKEN }}
+          ~/.deta/bin/deta new --python cubixolo
+      - name: deploy
       - uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with:
           deta-access-token: ${{ secrets.DETA_ACCESS_TOKEN }}
           deta-name: 'cubixolo'
-      - run: |
-          curl -fsSL https://get.deta.dev/cli.sh | sh
-          export PATH="/home/runner/.deta/bin:$PATH"
-          export DETA_ACCESS_TOKEN=${{ secrets.DETA_ACCESS_TOKEN }}
-          ~/.deta/bin/deta new --python cubixolo
-          
