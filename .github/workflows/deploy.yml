@@ -13,7 +13,6 @@ jobs:
         run: |
           curl -fsSL https://get.deta.dev/cli.sh | sh
           export DETA_ACCESS_TOKEN=${{ secrets.DETA_ACCESS_TOKEN }}
-          ~/.deta/bin/deta new --python cubixolol
       - name: deploy
         uses: BogDAAAMN/deta-deploy-action@v1.0.1
         with:
