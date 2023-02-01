@@ -103,7 +103,7 @@ def remove_user():
         
     player = levels[level]['players'][username]
     levels[level]['entities'].remove(player)
-    return responses['noPlayer']
+    return responses['success']
 
 @app.route('/', methods=["GET"])
 def hello_world():
