@@ -100,10 +100,10 @@ def remove_user():
         return responses['noLevel']
     if not username in levels[level]['players']:
         return responses['noPlayer']
-        
-    player = levels[level]['players'][username]
-    levels[level]['entities'].remove(player)
-    return responses['success']
+    else:
+        player = levels[level]['players'][username]
+        levels[level]['entities'].remove(player)
+        return responses['success']
 
 @app.route('/', methods=["GET"])
 def hello_world():
