@@ -111,6 +111,7 @@ def remove_user():
 @app.route('/levels', methods=["GET","POST"])
 def levelslol():
     try:
+        global levels
         if request.method == "GET":
             return levels
         else request.method == "POST":
