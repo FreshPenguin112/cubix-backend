@@ -103,10 +103,9 @@ def remove_user():
         elif not username in levels[level]['entities']:
             return responses['noPlayer']
         """
-        else:
-            player = levels[level]['players'][username]
-            levels[level]['players'].remove(player)
-            return responses['success']
+        player = levels[level]['players'][username]
+        levels[level]['players'].remove(player)
+        return responses['success']
     except BaseException as e:
         return str(e)
 
