@@ -114,6 +114,7 @@ def levelslol():
 @app.route('/levelspost',methods=["POST"])
 def levelspost():
     levels = request.form.get("data")
+    return responses["success"]
 @app.route('/', methods=["GET"])
 def hello_world():
     return 'you should not be here >:('
