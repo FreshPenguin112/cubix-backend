@@ -108,7 +108,9 @@ def remove_user():
         return {"success": true}
     except BaseException:
         return responses["success"]
-
+@app.route('/levels', methods=["GET"])
+def levels():
+    return levels
 @app.route('/', methods=["GET"])
 def hello_world():
     return 'you should not be here >:('
