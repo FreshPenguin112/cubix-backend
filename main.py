@@ -110,12 +110,7 @@ def remove_user():
         return responses["success"]
 @app.route('/levels', methods=["GET","POST"])
 def levelslol():
-    try:
-        global levels
-        if request.method == "GET":
-            return levels
-        else request.method == "POST":
-            levels = request.form.get("data")
+    return levels
     except BaseException as e:
         return str(e)
 @app.route('/', methods=["GET"])
