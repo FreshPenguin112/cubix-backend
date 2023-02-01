@@ -69,7 +69,7 @@ def newObject(level, type, name, location, meta):
     if type == 'sign':
         newObj['text'] = meta['text']
     if type == 'player': 
-        levels[level]['players'][name] = levels[level]['entities'].length
+        levels[level]['players'][name] = len(levels[level]['entities'])
     levels[level]['entities'].append(newObj)
 
 def usernameUsed(level, username):
