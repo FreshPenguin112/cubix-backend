@@ -89,7 +89,7 @@ def push_user():
 
         newObject(level, 'player', username, levels[level]['spawn'])
         return "hi"
-    except: return "ufrjfrrf"
+    except: return Exception
 
 @app.route('/leave', methods=["GET"])
 def remove_user():
