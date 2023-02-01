@@ -80,6 +80,7 @@ def push_user():
     try:
         level = request.args["level"]
         username = request.args["user"]
+        """
         if level == None:
             return levels.keys()
         if not level in levels: 
@@ -89,6 +90,7 @@ def push_user():
 
         newObject(level, 'player', username, levels[level]['spawn'])
         return "hi"
+        """
     except BaseException as e:
         return e
 
