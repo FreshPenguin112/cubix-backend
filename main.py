@@ -28,7 +28,7 @@ levels: {
     }
 }
 """
-from flask import Flask,request
+from flask import Flask,request,jsonify
 import json,time
 #now dumps is global func waw
 app = Flask(__name__)
@@ -110,7 +110,7 @@ def remove_user():
         return responses["success"]
 @app.route('/levels', methods=["GET"])
 def levels():
-    return str(levels)
+    return jsonify(levels)
 @app.route('/', methods=["GET"])
 def hello_world():
     return 'you should not be here >:('
