@@ -110,7 +110,10 @@ def remove_user():
         return responses["success"]
 @app.route('/levels', methods=["GET"])
 def levels():
-    return levels
+    try:
+        return levels
+    except BaseException as e:
+        return str(e)
 @app.route('/', methods=["GET"])
 def hello_world():
     return 'you should not be here >:('
