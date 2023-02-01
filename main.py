@@ -74,7 +74,8 @@ def newObject(level, type, name, location, meta):
 
 def usernameUsed(level, username):
     return username in levels[level]['players']
-
+def levelsreplace(x):
+    levels = x
 @app.route('/join', methods=["GET"])
 def push_user():
     try:
@@ -113,8 +114,7 @@ def levelslol():
     return levels
 @app.route('/levelspost',methods=["POST"])
 def levelspost():
-    global levels
-    levels = request.args.get("data")
+    levelsreplace(request.args.get("data"))
     return responses["success"]
 @app.route('/', methods=["GET"])
 def hello_world():
