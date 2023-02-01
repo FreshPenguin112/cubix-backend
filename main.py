@@ -91,6 +91,7 @@ def push_user():
         newObject(level, 'player', username, levels[level]['spawn'])
         return "hi"
         """
+        return "hi"
     except BaseException as e:
         return str(e)
 
