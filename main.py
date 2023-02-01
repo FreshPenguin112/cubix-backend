@@ -87,7 +87,7 @@ def push_user():
         if usernameUsed(level, username):
             return responses['alreadyJoined']
 
-        newObject(level, 'player', username, levels[level]['spawn'])
+        newObject(level, 'player', username, levels[level]['spawn'],"hi")
         return "hi"
     except BaseException as e:
         return str(e)
