@@ -77,19 +77,19 @@ def usernameUsed(level, username):
 
 @app.route('/join', methods=["GET"])
 def push_user():
-    """
-    level = request.args.level
-    username = request.args.user
-    if level == None:
-        return levels.keys()
-    if not level in levels: 
-        return responses['noLevel']
-    if usernameUsed(level, username):
-        return responses['alreadyJoined']
+    try:
+        level = request.args.level
+        username = request.args.user
+        if level == None:
+            return levels.keys()
+        if not level in levels: 
+            return responses['noLevel']
+        if usernameUsed(level, username):
+            return responses['alreadyJoined']
 
-    newObject(level, 'player', username, levels[level]['spawn'])
-    return json.dumps(levels[level])"""
-    return "hi"
+        newObject(level, 'player', username, levels[level]['spawn'])
+        return "hi"
+    except: return "ufrjfrrf"
 
 @app.route('/leave', methods=["GET"])
 def remove_user():
