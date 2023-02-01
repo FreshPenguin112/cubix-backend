@@ -28,7 +28,7 @@ levels: {
     }
 }
 """
-from flask import Flask
+from flask import Flask,request
 import json,time
 #now dumps is global func waw
 app = Flask(__name__)
