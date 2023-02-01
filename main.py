@@ -28,7 +28,7 @@ levels: {
     }
 }
 """
-from flask import Flask,request,jsonify
+from flask import Flask,request
 import json,time
 #now dumps is global func waw
 app = Flask(__name__)
@@ -108,10 +108,13 @@ def remove_user():
         return {"success": true}
     except BaseException:
         return responses["success"]
-@app.route('/levels', methods=["GET"])
+@app.route('/levels', methods=["GET","POST"])
 def levelslol():
     try:
-        return levels
+        if request.method == "GET":
+            return levels
+        elif request.method == "POST":
+            levels = request.form.get("data")
     except BaseException as e:
         return str(e)
 @app.route('/', methods=["GET"])
