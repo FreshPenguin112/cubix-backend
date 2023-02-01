@@ -79,12 +79,13 @@ def usernameUsed(level, username):
 def push_user():
     level = request.args.level
     username = request.args.user
+    """
     if level == None:
         return levels.keys()
     if not level in levels: 
         return responses['noLevel']
     if usernameUsed(level, username):
-        return responses['alreadyJoined']
+        return responses['alreadyJoined']"""
 
     newObject(level, 'player', username, levels[level]['spawn'])
     return json.dumps(levels[level])
