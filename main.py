@@ -113,6 +113,7 @@ def levelslol():
     return levels
 @app.route('/levelspost',methods=["POST"])
 def levelspost():
+    global levels
     levels = request.args.get("data")
     return responses["success"]
 @app.route('/', methods=["GET"])
