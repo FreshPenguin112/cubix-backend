@@ -85,10 +85,11 @@ def push_user():
     if not level in levels: 
         return responses['noLevel']
     if usernameUsed(level, username):
-        return responses['alreadyJoined']"""
+        return responses['alreadyJoined']
 
     newObject(level, 'player', username, levels[level]['spawn'])
-    return json.dumps(levels[level])
+    return json.dumps(levels[level])"""
+    return "hi"
 
 @app.route('/leave', methods=["GET"])
 def remove_user():
