@@ -33,27 +33,29 @@ import json,time
 #now dumps is global func waw
 app = Flask(__name__)
 # contains levels
-levels = {
-    'test': {
-        'name': 'test server',
-        'spawn': {
-            'x': -135,
-            'y': -155
-        },
-        'entities': [
-            {
-                'obj': 'sign',
-                'name': 'Info',
-                'text': 'this server is to test the cubix backend',
-                'location': {
-                    'x': -130,
-                    'y': -155
+@app.before_first_request
+def l():
+    levels = {
+        'test': {
+            'name': 'test server',
+            'spawn': {
+                'x': -135,
+                'y': -155
+            },
+            'entities': [
+                {
+                    'obj': 'sign',
+                    'name': 'Info',
+                    'text': 'this server is to test the cubix backend',
+                    'location': {
+                        'x': -130,
+                        'y': -155
+                    }
                 }
-            }
-        ],
-        'players': {}
+            ],
+            'players': {}
+        }
     }
-}
 responses = {
     'noLevel': '{"error": "requested level doesnt exist", "success": false}',
     'alreadyJoined': '{"error": "there is already someone online with that name", "success": false}',
