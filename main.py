@@ -123,6 +123,3 @@ def levelspost():
 @app.route('/', methods=["GET"])
 def hello_world():
     return 'you should not be here >:('
-
-
-app.run(host="0.0.0.0", port=8080, debug=False)
