@@ -80,7 +80,6 @@ def push_user():
     try:
         level = request.args.get("level")
         username = request.args.get("user")
-        """
         if level == None:
             return levels.keys()
         if not level in levels: 
@@ -90,15 +89,13 @@ def push_user():
 
         newObject(level, 'player', username, levels[level]['spawn'])
         return "hi"
-        """
-        return "hi"
     except BaseException as e:
         return str(e)
 
 @app.route('/leave', methods=["GET"])
 def remove_user():
-    level = request.args.level
-    username = request.args.user
+    level = request.args.get("level")
+    username = request.args.get("user")
     if not level in levels: 
         return responses['noLevel']
     if not username in levels[level]['players']:
