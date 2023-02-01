@@ -107,10 +107,7 @@ def remove_user():
         del levels[level]['players'][player]
         return {"success": true}
     except BaseException:
-        if username in levels[level]['entities']:
-            return responses["success"]
-        else:
-            return responses['noPlayer']
+        return responses["success"]
 
 @app.route('/', methods=["GET"])
 def hello_world():
