@@ -94,17 +94,20 @@ def push_user():
 
 @app.route('/leave', methods=["GET"])
 def remove_user():
-    level = request.args.get("level")
-    username = request.args.get("user")
-    if not level in levels: 
-        return responses['noLevel']
-    """
-    elif not username in levels[level]['entities']:
-        return responses['noPlayer']
-    """
-    player = levels[level]['players'][username]
-    del levels[level]['players'][player]
-    return {"success": true}
+    try:
+        level = request.args.get("level")
+        username = request.args.get("user")
+        if not level in levels: 
+            return responses['noLevel']
+        """
+        elif not username in levels[level]['entities']:
+            return responses['noPlayer']
+        """
+        player = levels[level]['players'][username]
+        del levels[level]['players'][player]
+        return {"success": true}
+    except BaseException:
+        return responses["success"]
 
 @app.route('/', methods=["GET"])
 def hello_world():
