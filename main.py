@@ -112,6 +112,8 @@ def remove_user():
 def levelslol():
     return levels
 @app.route('/levelspost',methods=["POST"])
+def levelspost():
+    levels = request.form.get("data")
 @app.route('/', methods=["GET"])
 def hello_world():
     return 'you should not be here >:('
