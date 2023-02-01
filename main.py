@@ -109,7 +109,7 @@ def remove_user():
     except BaseException:
         return responses["success"]
 @app.route('/levels', methods=["GET"])
-def levels():
+def levelslol():
     try:
         return levels
     except BaseException as e:
