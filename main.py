@@ -78,8 +78,8 @@ def usernameUsed(level, username):
 @app.route('/join', methods=["GET"])
 def push_user():
     try:
-        level = request.args["level"]
-        username = request.args["user"]
+        level = request.args.get("level")
+        username = request.args.get("user")
         """
         if level == None:
             return levels.keys()
