@@ -104,7 +104,7 @@ def remove_user():
             return responses['noPlayer']
         """
         player = levels[level]['players'][username]
-        levels[level]['players'].remove(player)
+        del levels[level]['players'][player]
         return {"success": true}
     except BaseException as e:
         return str(e)
