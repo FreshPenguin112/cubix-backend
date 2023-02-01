@@ -92,7 +92,7 @@ def push_user():
         return "hi"
         """
     except BaseException as e:
-        return e
+        return str(e)
 
 @app.route('/leave', methods=["GET"])
 def remove_user():
