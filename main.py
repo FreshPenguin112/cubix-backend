@@ -74,8 +74,6 @@ def newObject(level, type, name, location, meta):
 
 def usernameUsed(level, username):
     return username in levels[level]['players']
-def levelsreplace(x):
-    levels = x
 @app.route('/join', methods=["GET"])
 def push_user():
     try:
@@ -110,11 +108,13 @@ def remove_user():
     except BaseException:
         return responses["success"]
 @app.route('/levels', methods=["GET"])
-def levelslol():
+def levelslol(): # repl chat
     return levels
 @app.route('/levelspost',methods=["POST"])
 def levelspost():
-    levelsreplace(request.args.get("data"))
+    global levels
+    # idk then :( 
+    levels = request.form.get("data")
     return responses["success"]
 @app.route('/', methods=["GET"])
 def hello_world():
