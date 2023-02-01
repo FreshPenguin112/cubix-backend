@@ -98,7 +98,7 @@ def remove_user():
     username = request.args.get("user")
     if not level in levels: 
         return responses['noLevel']
-    if not username in levels[level]['players']:
+    if not username in levels[level]['entities']:
         return responses['noPlayer']
     else:
         player = levels[level]['players'][username]
