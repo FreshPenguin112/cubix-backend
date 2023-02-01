@@ -77,9 +77,9 @@ def usernameUsed(level, username):
 
 @app.route('/join', methods=["GET"])
 def push_user():
+    """
     level = request.args.level
     username = request.args.user
-    """
     if level == None:
         return levels.keys()
     if not level in levels: 
