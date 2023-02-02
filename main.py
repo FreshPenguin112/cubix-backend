@@ -114,6 +114,13 @@ def levelslol():
     return list(levels.keys())
 
 @app.route('/level/<level>', defaults={'attr': None}, methods=["GET"])
+def levelgetattr(level, attr):
+    if not level in levels:
+        return responses['noLevel']
+    level = levels[level]
+    if not attr == None:
+        return level[attr]
+    return level
 @app.route('/level/<level>/<attr>', methods=["GET"])
 def levelget(level, attr):
     if not level in levels:
