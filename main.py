@@ -115,12 +115,17 @@ def levelslol():
 
 @app.route('/level/<level>/attr/<attr>', defaults={'attr': None}, methods=["GET"])
 def levelgetattr(level, attr):
-    if not level in levels:
-        return responses['noLevel']
-    level = levels[level]
-    if not attr == None:
-        return level[attr]
-    return level
+    try:
+        if not level in levels:
+            return responses['noLevel']
+        else:
+            level = levels[level]
+            if not attr == None:
+                return level[attr]
+            else:
+                return level
+    except BaseException as e:
+        return str(e)
 
 
 @app.route('/level/<level>', methods=["GET"])
