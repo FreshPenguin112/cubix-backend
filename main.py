@@ -29,7 +29,7 @@ levels: {
 }
 """
 from flask import Flask, request
-import json, time,sys
+import json, time, sys
 
 app = Flask(__name__)
 levels = {
@@ -40,43 +40,41 @@ levels = {
             'x': -135,
             'y': -155
         },
-        'entities': [
-            {
-                'obj': 'sign',
-                'name': 'Info',
-                'text': 'this server is to test the cubix backend',
-                'location': {
-                    'x': -130,
-                    'y': -155
-                }
+        'entities': [{
+            'obj': 'sign',
+            'name': 'Info',
+            'text': 'this server is to test the cubix backend',
+            'location': {
+                'x': -130,
+                'y': -155
             }
-        ],
+        }],
         'players': {}
     }
 }
 responses = {
     'noLevel': '{"error": "requested level doesnt exist", "success": false}',
-    'alreadyJoined': '{"error": "there is already someone online with that name", "success": false}',
-    'noPlayer': '{"error": "there is noone in this server by that name", "success": false}',
+    'alreadyJoined':
+    '{"error": "there is already someone online with that name", "success": false}',
+    'noPlayer':
+    '{"error": "there is noone in this server by that name", "success": false}',
     'success': '{"success": true}'
 }
 
 
 def newObject(level, type, name, location, meta={}):
-    newObj = {
-        'obj': type, 
-        'name': name, 
-        'location': location
-    }
-    
+    newObj = {'obj': type, 'name': name, 'location': location}
+
     if type == 'sign':
         newObj['text'] = meta['text']
     if type == 'player':
         levels[level]['players'][name] = len(levels[level]['entities'])
     levels[level]['entities'].append(newObj)
 
+
 def usernameUsed(level, username):
     return username in levels[level]['players']
+
 
 @app.route('/join', methods=["GET"])
 def push_user():
@@ -109,11 +107,13 @@ def remove_user():
     del levels[level]['players'][username]
     return responses['success']
 
+
 @app.route('/levels', methods=["GET"])
 def levelslol():
     return list(levels.keys())
 
-@app.route('/level/<level>', defaults={'attr': None}, methods=["GET"])
+
+@app.route('/level/<level>/<attr>', defaults={'attr': None}, methods=["GET"])
 def levelgetattr(level, attr):
     if not level in levels:
         return responses['noLevel']
@@ -121,7 +121,9 @@ def levelgetattr(level, attr):
     if not attr == None:
         return level[attr]
     return level
-@app.route('/level/<level>/<attr>', methods=["GET"])
+
+
+@app.route('/level/<level>', methods=["GET"])
 def levelget(level, attr):
     if not level in levels:
         return responses['noLevel']
@@ -129,6 +131,7 @@ def levelget(level, attr):
     if not attr == None:
         return level[attr]
     return level
+
 
 @app.route('/level/<level>/<username>', methods=["POST"])
 def setUser(level, username):
@@ -138,7 +141,7 @@ def setUser(level, username):
         return responses['noPlayer']
     level = levels[level]
     entity = level['players'][username]
-    
+
 
 @app.route('/', methods=["GET"])
 def hello_world():
