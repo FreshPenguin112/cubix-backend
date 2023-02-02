@@ -63,6 +63,7 @@ responses = {
     'noPlayer':
     '{"error": "there is noone in this server by that name", "success": false}',
     'success': '{"success": true}'
+    "noName": '{"error": "you forgot to put a name", "success": false}' 
 }
 
 
@@ -87,6 +88,8 @@ def push_user():
         username = request.args.get("user")
         if level == None:
             return levels.keys()
+        if user == None:
+            return responses['noName']
         if not level in levels:
             return responses['noLevel']
         if usernameUsed(level, username):
