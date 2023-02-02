@@ -62,7 +62,7 @@ responses = {
     '{"error": "there is already someone online with that name", "success": false}',
     'noPlayer':
     '{"error": "there is noone in this server by that name", "success": false}',
-    'success': '{"success": true}'
+    'success': '{"success": true}',
     "noName": '{"error": "you forgot to put a name", "success": false}' 
 }
 
