@@ -123,7 +123,6 @@ def levelgetattr(level, attr):
     return level
 
 
-"""
 @app.route('/level/<level>', methods=["GET"])
 def levelget(level, attr):
     if not level in levels:
@@ -131,7 +130,7 @@ def levelget(level, attr):
     level = levels[level]
     if not attr == None:
         return level[attr]
-    return level"""
+    return level
 
 
 @app.route('/level/<level>/<username>', methods=["POST"])
