@@ -123,6 +123,16 @@ def levelget(level, attr):
         return level[attr]
     return level
 
+@app.route('/level/<level>/<username>', methods=["GET"])
+def setUser(level, username):
+    if not level in levels:
+        return responses['noLevel']
+    if not usernameUsed(level, username):
+        return responses['noPlayer']
+    level = levels[level]
+    entity = level['players'][username]
+    
+
 @app.route('/', methods=["GET"])
 def hello_world():
     return 'you should not be here >:('
