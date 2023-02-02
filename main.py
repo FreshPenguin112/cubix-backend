@@ -123,7 +123,7 @@ def levelget(level, attr):
         return level[attr]
     return level
 
-@app.route('/level/<level>/<username>', methods=["GET"])
+@app.route('/level/<level>/<username>', methods=["POST"])
 def setUser(level, username):
     if not level in levels:
         return responses['noLevel']
