@@ -79,7 +79,6 @@ def usernameUsed(level, username):
     return username in levels[level]['players']
 
 @app.route('/join', methods=["GET"])
-@crossdomain(origin='*',headers=['access-control-allow-origin','Content-Type'])
 def push_user():
     try:
         level = request.args.get("level")
@@ -98,7 +97,6 @@ def push_user():
 
 
 @app.route('/leave', methods=["GET"])
-@crossdomain(origin='*',headers=['access-control-allow-origin','Content-Type'])
 def remove_user():
     level = request.args.get("level")
     username = request.args.get("user")
@@ -112,13 +110,11 @@ def remove_user():
     return responses['success']
 
 @app.route('/levels', methods=["GET"])
-@crossdomain(origin='*',headers=['access-control-allow-origin','Content-Type'])
 def levelslol():
     return list(levels.keys())
 
 @app.route('/level/<level>', defaults={'attr': None}, methods=["GET"])
 @app.route('/level/<level>/<attr>', methods=["GET"])
-@crossdomain(origin='*',headers=['access-control-allow-origin','Content-Type'])
 def levelget(level, attr):
     if not level in levels:
         return responses['noLevel']
@@ -128,7 +124,6 @@ def levelget(level, attr):
     return level
 
 @app.route('/level/<level>/<username>', methods=["POST"])
-@crossdomain(origin='*',headers=['access-control-allow-origin','Content-Type'])
 def setUser(level, username):
     if not level in levels:
         return responses['noLevel']
@@ -139,6 +134,5 @@ def setUser(level, username):
     
 
 @app.route('/', methods=["GET"])
-@crossdomain(origin='*',headers=['access-control-allow-origin','Content-Type'])
 def hello_world():
     return 'you should not be here >:('
