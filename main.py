@@ -113,7 +113,7 @@ def levelslol():
     return list(levels.keys())
 
 
-@app.route('/level/<level>/<attr>', defaults={'attr': None}, methods=["GET"])
+@app.route('/level/<level>/attr/<attr>', defaults={'attr': None}, methods=["GET"])
 def levelgetattr(level, attr):
     if not level in levels:
         return responses['noLevel']
@@ -133,7 +133,7 @@ def levelget(level, attr):
     return level
 
 
-@app.route('/level/<level>/<username>', methods=["POST"])
+@app.route('/level/<level>/player/<username>', methods=["POST"])
 def setUser(level, username):
     if not level in levels:
         return responses['noLevel']
