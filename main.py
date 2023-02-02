@@ -88,7 +88,7 @@ def push_user():
         username = request.args.get("user")
         if level == None:
             return levels.keys()
-        if user == None:
+        if username == None:
             return responses['noName']
         if not level in levels:
             return responses['noLevel']
