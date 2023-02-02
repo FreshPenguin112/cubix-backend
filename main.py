@@ -29,9 +29,13 @@ levels: {
 }
 """
 from flask import Flask, request
+from flask_cors import CORS
 import json, time, sys
 
 app = Flask(__name__)
+CORS(app)
+
+
 levels = {
     'test': {
         'name':
