@@ -101,7 +101,7 @@ def push_user():
         return str(e)
 
 @app.route('/join2/<level>/<username>', methods=["GET"])
-def push_user(level,username):
+def push_user2(level,username):
     try:        
         if level == None:
             return levels.keys()
@@ -130,8 +130,9 @@ def remove_user():
     levels[level]['entities'].pop(entity)
     del levels[level]['players'][username]
     return responses['success']
+
 @app.route('/leave2/<level>/<username>', methods=["GET"])
-def remove_user(level,username):
+def remove_user2(level,username):
     if not level in levels:
         return responses['noLevel']
     if not usernameUsed(level, username):
