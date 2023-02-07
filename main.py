@@ -158,6 +158,7 @@ def setUser(level, username, action):
         return responses['success']
     elif action == 'move':
         targetPos = actionData['newPos']
+        playerPos = player['location']
         distance = getDistance(playerPos, targetPos)
         if distance >= 10:
             return responses['outOfRange']
