@@ -130,8 +130,9 @@ def remove_user():
     levels[level]['entities'].pop(entity)
     del levels[level]['players'][username]
     return responses['success']
+
 @app.route('/leave2/<level>/<username>', methods=["GET"])
-def remove_user2():
+def remove_user2(level,username):
     if not level in levels:
         return responses['noLevel']
     if not usernameUsed(level, username):
