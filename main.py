@@ -104,7 +104,7 @@ def push_user():
     newObject(level, 'player', username, levels[level]['spawn'])
     return levels
 @app.route('/join2/<level>/<username>', methods=["GET"])
-def push_user(level,username):
+def push_user2(level,username):
     if level == None:
         return levels.keys()
     if username == None:
@@ -131,7 +131,7 @@ def remove_user():
     del levels[level]['players'][username]
     return responses['success']
 @app.route('/leave2/<level>/<username>', methods=["GET"])
-def remove_user():
+def remove_user2():
     if not level in levels:
         return responses['noLevel']
     if not usernameUsed(level, username):
