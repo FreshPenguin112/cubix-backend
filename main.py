@@ -30,11 +30,10 @@ levels: {
 """
 from flask import Flask, request
 from flask_cors import CORS
-import json, time, sys
+import json, time, sys, math
 
 app = Flask(__name__)
 CORS(app)
-
 
 levels = {
     'test': {
@@ -63,7 +62,9 @@ responses = {
     'noPlayer':
     '{"error": "there is noone in this server by that name", "success": false}',
     'success': '{"success": true}',
-    "noName": '{"error": "you forgot to put a name", "success": false}' 
+    "noName": '{"error": "you forgot to put a name", "success": false}',
+    "invalidAction": '{"error": "the provided action is not valid", "success": false}',
+    "outOfRange": '{"error": "the provided target/position is out of range", "success": false}'
 }
 
 
@@ -77,62 +78,37 @@ def newObject(level, type, name, location, meta={}):
     levels[level]['entities'].append(newObj)
 
 
+def getDistance(pos1, pos2):
+    xd = pos2['x'] - pos1['x']
+    yd = pos2['y'] - pos1['y']
+    return math.sqrt(xd + yd)
+
+
 def usernameUsed(level, username):
     return username in levels[level]['players']
 
 
 @app.route('/join', methods=["GET"])
 def push_user():
-    try:
-        level = request.args.get("level")
-        username = request.args.get("user")
-        if level == None:
-            return levels.keys()
-        if username == None:
-            return responses['noName']
-        if not level in levels:
-            return responses['noLevel']
-        if usernameUsed(level, username):
-            return responses['alreadyJoined']
+    level = request.args.get("level")
+    username = request.args.get("user")
+    if level == None:
+        return levels.keys()
+    if username == None:
+        return responses['noName']
+    if not level in levels:
+        return responses['noLevel']
+    if usernameUsed(level, username):
+        return responses['alreadyJoined']
 
-        newObject(level, 'player', username, levels[level]['spawn'])
-        return levels
-    except BaseException as e:
-        return str(e)
-
-@app.route('/join2/<level>/<username>', methods=["GET"])
-def push_user2(level,username):
-    try:        
-        if level == None:
-            return levels.keys()
-        if username == None:
-            return responses['noName']
-        if not level in levels:
-            return responses['noLevel']
-        if usernameUsed(level, username):
-            return responses['alreadyJoined']
-
-        newObject(level, 'player', username, levels[level]['spawn'])
-        return levels
-    except BaseException as e:
-        return str(e)
+    newObject(level, 'player', username, levels[level]['spawn'])
+    return levels
 
 
 @app.route('/leave', methods=["GET"])
 def remove_user():
     level = request.args.get("level")
     username = request.args.get("user")
-    if not level in levels:
-        return responses['noLevel']
-    if not usernameUsed(level, username):
-        return responses['noPlayer']
-    entity = levels[level]['players'][username]
-    levels[level]['entities'].pop(entity)
-    del levels[level]['players'][username]
-    return responses['success']
-
-@app.route('/leave2/<level>/<username>', methods=["GET"])
-def remove_user2(level,username):
     if not level in levels:
         return responses['noLevel']
     if not usernameUsed(level, username):
@@ -159,15 +135,37 @@ def levelget(level, attr):
     return level
 
 
-@app.route('/level/<level>/<username>', methods=["POST"])
-def setUser(level, username):
+@app.route('/update/<level>/<username>/<action>', methods=["POST"])
+def setUser(level, username, action):
+    actionData = request.json['data']
+    if not type(actionData) == dict:
+        return responses['invalidAction']
     if not level in levels:
         return responses['noLevel']
     if not usernameUsed(level, username):
         return responses['noPlayer']
     level = levels[level]
-    entity = level['players'][username]
-
+    playerIdx = level['players'][username]
+    player = level['entities'][playerIdx]
+    if action == 'grab':
+        targetIdx = actionData['target']
+        target = level['entities'][targetIdx]
+        targetPos = target['location']
+        playerPos = player['location']
+        distance = getDistance(playerPos, targetPos)
+        level['entities'][targetIdx]['location'] = actionData['moveTo']
+        level['entities'][playerIdx]['holding'] = actionData['target']
+        return responses['success']
+    elif action == 'move':
+        targetPos = actionData['newPos']
+        distance = getDistance(playerPos, targetPos)
+        if distance >= 10:
+            return responses['outOfRange']
+        level['entities'][playerIdx]['location'] = targetPos
+        return responses['success']
+    else:
+        return responses['invalidAction']
+        
 
 @app.route('/', methods=["GET"])
 def hello_world():
